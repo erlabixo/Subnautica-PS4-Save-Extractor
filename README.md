@@ -10,7 +10,7 @@ QuickBMS script that extracts the files of a Subnautica PS4 savefile after it ha
 4. Open a command line in that folder and run something like this:
 
 ```shell
-./quickbms.exe Subnautica_PS4_Extractor.bms slot0000.blb ./slot0000
+./quickbms.exe Subnautica-PS4-Save-Extractor.bms slot0000.blb ./slot0000
 ```
 ## What to do with the Output
 The output directory will contain all the files of that save.  
