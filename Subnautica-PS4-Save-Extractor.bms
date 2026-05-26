@@ -1,0 +1,42 @@
+# The "Unity Serialization" signature that marks the beginning of a new file
+set SIGNATURE binary "\x00\x01\x00\x00\x00\xFF\xFF\xFF\xFF\x01\x00\x00\x00\x00\x00\x00\x00\x06\x01\x00\x00\x00"
+math SIGNATURE_LENGTH = 22
+get BLB_SIZE asize
+comtype zlib
+
+# Search for the signature within the first 300 bytes
+findloc SIGNATURE_POSITION binary SIGNATURE 0 300
+
+callfunction GET_FILENAME 1
+
+for 
+    # Find the start of the compressed data (CMP)
+    findloc DATA_START string "CMP" 0 300
+    # The data starts after the "CMP xœ"
+    math DATA_START += 4
+    
+    # Search the next signature to get the end of the compressed data
+    findloc SIGNATURE_POSITION binary SIGNATURE 0 ""
+    if SIGNATURE_POSITION != ""
+        # Extraction
+        math ZSIZE = SIGNATURE_POSITION
+        math ZSIZE -= DATA_START
+        clog FILENAME DATA_START ZSIZE 0x1000000
+    else
+        # End of File
+        math ZSIZE = BLB_SIZE      
+        math ZSIZE -= DATA_START
+        clog FILENAME DATA_START ZSIZE 0x1000000
+        cleanexit
+    endif
+    callfunction GET_FILENAME 1
+next
+
+startfunction GET_FILENAME
+    # The first byte after the signature states the length of the filename
+    math NAME_LEN_POS = SIGNATURE_POSITION
+    math NAME_LEN_POS += SIGNATURE_LENGTH
+    goto NAME_LEN_POS
+    get NAME_LEN byte
+    getdstring FILENAME NAME_LEN
+endfunction
