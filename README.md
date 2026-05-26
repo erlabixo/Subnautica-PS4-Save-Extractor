@@ -14,7 +14,7 @@ The output directory will contain all the files of that save.
 You should rename the directory to something like slot0000 and then you can move it to where your PC saves are located.  
 If you already have a slot0000 directory and you don't want to overwrite your existing PC save, call it slot0010 or similar.
 
-## A couple of notes
+## A few notes
 * It's probably a good idea to update the game to the latest version in your PS4 and then save again, so the format of the saves is the latest. 
 That being said, I tested it with a save I had from 2021 and it seemed to work fine.
 * The files in the directory "CellsCache" are all extracted as hundreds or even thousands of *.bin files. In the PC saves, these files are grouped and compressed in several ZIP files.  
