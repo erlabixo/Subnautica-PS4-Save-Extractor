@@ -7,11 +7,14 @@ QuickBMS script that extracts the files of a Subnautica PS4 savefile after it ha
 1. Download and extract [QuickBMS](https://github.com/LittleBigBug/QuickBMS)
 2. Download Subnautica-PS4-Save-Extractor.bms to the same folder as QuickBMS
 3. Place the PS4 save (after decrypted) in the same folder. It's usually called slot0000.blb or similar.
-4. Open a command line in the folder and run "QuickBMS Subnautica-PS4-Save-Extractor.bms [savefile] [Output Directory]"
+4. Open a command line in that folder and run something like this:
 
+```shell
+./quickbms.exe subnautica_ps4_extractor.bms slot0000.blb ./slot0000
+```
 ## What to do with the Output
 The output directory will contain all the files of that save.  
-You should rename the directory to something like slot0000 and then you can move it to where your PC saves are located.  
+You should name the directory something like slot0000 and you can move it to where your PC saves are located.  
 If you already have a slot0000 directory and you don't want to overwrite your existing PC save, call it slot0010 or similar.
 
 ## A few notes
